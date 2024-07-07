@@ -17,12 +17,14 @@ const popupCombobox: PopupSettings = {
 				
 </script>
 
-<header class="flex justify-between">
+<header class="flex justify-between pr-3">
     <div>
-      <h1 class="text-4xl">{dayOrNight} الخير👋</h1>
-       <h2 class="text-xl mt-3 pl-20 text-black/50 whitespace-nowrap">
+      <h1 class="text-3xl lg:text-4xl">{dayOrNight} الخير👋</h1>
+       <div class="mt-4 whitespace-nowrap">
+       <h2 class="text-l lg:text-xl text-black/50">
          {dayjs().format('dddd D MMM YYYY , h:mm A')}
       </h2> 
+    </div>
     </div>
      
     <div>
@@ -41,8 +43,8 @@ const popupCombobox: PopupSettings = {
             }
           
     </style>
-        
-<button class="variant-filled-success border border-success-700 text-black btn variant-filled w-48 h-fit py-2" use:popup={popupCombobox}>
+  <div class="pt-3">      
+<button class="variant-filled-success border border-success-700 text-black btn variant-filled w-40 lg:w-48 h-fit py-2" use:popup={popupCombobox}>
 	<span class="font-bold">{comboboxValue}</span>
 
 	<span class="!m-0"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 1024 1024"><path fill="currentColor" d="M104.704 338.752a64 64 0 0 1 90.496 0l316.8 316.8l316.8-316.8a64 64 0 0 1 90.496 90.496L557.248 791.296a64 64 0 0 1-90.496 0L104.704 429.248a64 64 0 0 1 0-90.496"/></svg></span>
@@ -59,7 +61,7 @@ const popupCombobox: PopupSettings = {
  <div class="arrow bg-surface-100-600-token" />
 
 </div>
-					
+</div>			
 	
     </div>
 
