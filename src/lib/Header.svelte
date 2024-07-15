@@ -19,9 +19,9 @@ const popupCombobox: PopupSettings = {
 
 <header class="flex justify-between pr-3">
     <div>
-      <h1 class="text-3xl lg:text-4xl">{dayOrNight} الخير👋</h1>
+      <h1 class="text-3xl lg:text-4xl text-primary-800">{dayOrNight} الخير👋</h1>
        <div class="mt-4 whitespace-nowrap">
-       <h2 class="text-l lg:text-xl text-black/50">
+       <h2 class="text-l lg:text-xl text-primary-900/50">
          {dayjs().format('dddd D MMM YYYY , h:mm A')}
       </h2> 
     </div>
@@ -41,17 +41,17 @@ const popupCombobox: PopupSettings = {
               background-color: @apply bg-success-400 !important; 
               color: black !important; 
             }
-          
-    </style>
+ </style>
+ 
   <div class="pt-3">      
-<button class="variant-filled-success border border-success-700 text-black btn variant-filled w-40 lg:w-48 h-fit py-2" use:popup={popupCombobox}>
+<button class="variant-filled-success border border-success-700 text-success-900 btn variant-filled w-40 lg:w-48 h-fit py-2 flex justify-between" use:popup={popupCombobox}>
 	<span class="font-bold">{comboboxValue}</span>
 
 	<span class="!m-0"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 1024 1024"><path fill="currentColor" d="M104.704 338.752a64 64 0 0 1 90.496 0l316.8 316.8l316.8-316.8a64 64 0 0 1 90.496 90.496L557.248 791.296a64 64 0 0 1-90.496 0L104.704 429.248a64 64 0 0 1 0-90.496"/></svg></span>
 </button>
 
 <!-- bg-success-300-->
-<div class="card w-48 py-2 variant-filled-success" data-popup="popupCombobox">
+<div class="card w-48 py-2 variant-filled-success text-success-800" data-popup="popupCombobox">
    
   <ListBox rounded="rounded-none">
 	<ListBoxItem class="{comboboxValue === 'جميع المهام' ? 'custom-selected selected-item' : ''}" bind:group={comboboxValue} name="medium" value="جميع المهام">جميع المهام</ListBoxItem>

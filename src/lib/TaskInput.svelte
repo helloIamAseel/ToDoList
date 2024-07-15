@@ -8,7 +8,7 @@
     toDo.update((currentTask) => {
       currentTask.push({
         titel,
-        douDate: dayjs(),
+        douDate: dayjs().format(),
         isDone: false,
       });
       return currentTask;
@@ -20,22 +20,30 @@
 </script>
 
 <style>
+
 	/**To add a border color to the input element*/
   
 	.costom-border {
 	  border-color: #b30e87
 	}
-  
+
+    /* to gave the placeholder a new color */
+
+    .custom-placeholder::placeholder {
+      color: #a1167f; 
+      opacity: 0.5; /* for the saturstion of the color */
+    }
+   
 </style>
  
 <div
-  class="variant-ghost-secondary costom-border input-group input-group-divider flex justify-between"
+  class="variant-ghost-secondary costom-border input-group input-group-divider flex justify-between text-secondary-600"
 >
-  <input
+  <input 
     bind:value={titel}
-    class="flex-1"
+    class="flex-1 custom-placeholder"
     type="search"
     placeholder="إضافة مهمة"
   />
-  <button on:click={addTask} class="bg-secondary-400">حفظ</button>
+  <button on:click={addTask} class="bg-secondary-500 text-secondary-900 font-semibold hover:bg-secondary-400">حفظ</button>
 </div>
