@@ -3,20 +3,23 @@
   import dayjs from "dayjs";
 
   let titel = "";
+  let douTime = dayjs().add(1, "hour").format("YYYY-MM-DDTHH:mm");
 
   function addTask() {
     toDo.update((currentTask) => {
       currentTask.push({
         titel,
-        douDate: dayjs().format(),
+        douDate: douTime,
         isDone: false,
       });
-      return currentTask;
+      return currentTask.sort((a: Task, b:Task) => {
+        return dayjs(a.douDate).unix() - dayjs(b.douDate).unix();
+      });
     });
     titel = "";
   }
 
-  $: console.log(titel);
+ 
 </script>
 
 <style>
@@ -36,8 +39,8 @@
    
 </style>
  
-<div
-  class="variant-ghost-secondary costom-border input-group input-group-divider flex justify-between text-secondary-600"
+<form
+  class="variant-ghost-secondary costom-border input-group input-group-divider flex justify-between flex-col sm:flex-row text-secondary-600"
 >
   <input 
     bind:value={titel}
@@ -45,5 +48,14 @@
     type="search"
     placeholder="إضافة مهمة"
   />
-  <button on:click={addTask} class="bg-secondary-500 text-secondary-900 font-semibold hover:bg-secondary-400">حفظ</button>
-</div>
+  <input
+   bind:value={douTime} 
+
+   class="input sm:w-fit rounded-none border-none" 
+   title="Input (datetime-local)" 
+   type="datetime-local" 
+  />
+  <button type="submit" disabled={titel.trim().length == 0} on:click={addTask} class="bg-secondary-500 text-secondary-900 font-semibold hover:bg-secondary-400 p-2">
+    <span class="mx-auto">حفظ</span>
+  </button>
+</form>

@@ -2,17 +2,25 @@
     import { ListBox, ListBoxItem, popup, type PopupSettings } from '@skeletonlabs/skeleton';
 	import dayjs from 'dayjs';
 	import 'dayjs/locale/ar';
+    import { filter } from "$lib/storeg/filter";
 
 	dayjs.locale('ar');
     let dayOrNight = dayjs().format("a") == "م" ? "مساء" : "صباح";
 	
-let comboboxValue: string = "جميع المهام";
+
 
 const popupCombobox: PopupSettings = {
 	event: 'click',
 	target: 'popupCombobox',
 	placement: 'bottom',
-	closeQuery: '.listbox-item'
+	closeQuery: '.listbox-item',
+    state: (e: Record<string, boolean>) => {
+        if(e.state){
+            document.getElementById('arrow')?.classList.add('-rotate-90');
+        } else {
+            document.getElementById('arrow')?.classList.remove('-rotate-90'); 
+        }
+    }
 };
 				
 </script>
@@ -42,21 +50,22 @@ const popupCombobox: PopupSettings = {
               color: black !important; 
             }
  </style>
- 
-  <div class="pt-3">      
-<button class="variant-filled-success border border-success-700 text-success-900 btn variant-filled w-40 lg:w-48 h-fit py-2 flex justify-between" use:popup={popupCombobox}>
-	<span class="font-bold">{comboboxValue}</span>
 
-	<span class="!m-0"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 1024 1024"><path fill="currentColor" d="M104.704 338.752a64 64 0 0 1 90.496 0l316.8 316.8l316.8-316.8a64 64 0 0 1 90.496 90.496L557.248 791.296a64 64 0 0 1-90.496 0L104.704 429.248a64 64 0 0 1 0-90.496"/></svg></span>
+  <div class="pt-3 flex items-center">      
+<button class="variant-filled-success border border-success-700 text-success-900 btn variant-filled w-40 lg:w-48 h-fit py-2 flex justify-between" use:popup={popupCombobox}>
+	<span class="font-bold">{$filter}</span>
+
+	<span class="!m-0">
+        <svg id="arrow" class="transition-all"
+        xmlns="http://www.w3.org/2000/svg" width="1.3em" height="1.5em" viewBox="0 0 1024 1024"><path fill="currentColor" d="M685.248 104.704a64 64 0 0 1 0 90.496L368.448 512l316.8 316.8a64 64 0 0 1-90.496 90.496L232.704 557.248a64 64 0 0 1 0-90.496l362.048-362.048a64 64 0 0 1 90.496 0"/></svg></span>
 </button>
 
-<!-- bg-success-300-->
 <div class="card w-48 py-2 variant-filled-success text-success-800" data-popup="popupCombobox">
    
   <ListBox rounded="rounded-none">
-	<ListBoxItem class="{comboboxValue === 'جميع المهام' ? 'custom-selected selected-item' : ''}" bind:group={comboboxValue} name="medium" value="جميع المهام">جميع المهام</ListBoxItem>
-    <ListBoxItem class="{comboboxValue === 'الــيــوم' ? 'custom-selected selected-item' : ''}" bind:group={comboboxValue} name="medium" value="الــيــوم">الــيــوم</ListBoxItem>
-    <ListBoxItem class="{comboboxValue === 'هذا الأسبوع' ? 'custom-selected selected-item' : ''}" bind:group={comboboxValue} name="medium" value="هذا الأسبوع">هذا الأسبوع</ListBoxItem>
+	<ListBoxItem class="{$filter === 'جميع المهام' ? 'custom-selected selected-item' : ''}" bind:group={$filter} name="medium" value="جميع المهام">جميع المهام</ListBoxItem>
+    <ListBoxItem class="{$filter === 'الــيــوم' ? 'custom-selected selected-item' : ''}" bind:group={$filter} name="medium" value="الــيــوم">الــيــوم</ListBoxItem>
+    <ListBoxItem class="{$filter === 'هذا الأسبوع' ? 'custom-selected selected-item' : ''}" bind:group={$filter} name="medium" value="هذا الأسبوع">هذا الأسبوع</ListBoxItem>
 	</ListBox>
  <div class="arrow bg-surface-100-600-token" />
 
