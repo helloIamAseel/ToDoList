@@ -9,7 +9,7 @@
 
 <svelte:head>
   <title>
-    منظم المهام
+   :منظم المهام
   </title>
 </svelte:head>
 
